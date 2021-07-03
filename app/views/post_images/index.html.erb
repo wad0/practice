@@ -1,0 +1,15 @@
+<%= form_with model:@postimage,url:postimages_path,method: :post,local: true do |f| %>
+ <div class="form-group">
+   <p>Image</p>
+     <%= f.attachment_field :image_id %>
+ </div>
+ <div class="form-group">
+   <p>Text</p>
+     <%= f.text_field :text %>
+ </div>
+
+
+<% @postimages.each do |postimage| %>
+  <%= attachment_image_tag(postimage, :image_id, :fill, 50, 50, fallback: "no-image-icon.jpg") %>
+  <%= postimage.text %>
+<% end %>
