@@ -1,15 +1,21 @@
-<%= form_with model:@postimage,url:postimages_path,method: :post,local: true do |f| %>
+<%= form_with model:@postimage,url:post_images_path,method: :post,local: true do |f| %>
+
  <div class="form-group">
    <p>Image</p>
-     <%= f.attachment_field :image_id %>
+     <%= f.attachment_field :image %>
  </div>
  <div class="form-group">
    <p>Text</p>
      <%= f.text_field :text %>
  </div>
+ <div class="form-group">
+     <%= f.submit '投稿' %>
+ </div>
+
+<% end %>
 
 
 <% @postimages.each do |postimage| %>
-  <%= attachment_image_tag(postimage, :image_id, :fill, 50, 50, fallback: "no-image-icon.jpg") %>
+  <%= attachment_image_tag postimage, :image %>
   <%= postimage.text %>
 <% end %>

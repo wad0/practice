@@ -1,19 +1,19 @@
 class PostImagesController < ApplicationController
 
   def create
-    @postimage = Post_image.new(postimage_params)
+    @postimage = PostImage.new(postimage_params)
     @postimage.user_id = current_user.id
     if @postimage.save
       redirect_to post_images_path, notice: "投稿完了"
     else
-      @postimages = Post_image.all
+      @postimages = PostImage.all
       render 'index'
     end
   end
 
   def index
-    @postimages = Post_image.all
-    @postimage = Post_image.new
+    @postimages = PostImage.all
+    @postimage = PostImage.new
   end
 
   def edit
@@ -24,12 +24,12 @@ class PostImagesController < ApplicationController
 
   def destroy
   end
-  
+
   private
-  
+
   def postimage_params
-    params.require(:post_image).permit(:image_id,:text)
+    params.require(:post_image).permit(:image,:text)
   end
-  
+
 
 end
